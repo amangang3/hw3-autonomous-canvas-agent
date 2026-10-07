@@ -3,10 +3,10 @@ Snapshot: 2026-10-07 10:13 EDT
 
 SUBMISSION ARTIFACTS
 
-Code archive: canvas-agent-source.zip
+Code repository: https://github.com/amangang3/hw3-autonomous-canvas-agent
 This text file: canvas-agent-submission.txt
 
-The ZIP contains the Python source, tests, wrapper script, setup README, architecture document, runtime instructions, dependency lockfile, secret scanner, evidence collector, and failure-recovery evidence. It intentionally excludes the Canvas credential, OAuth credentials, runtime database, logs, drafts, caches, and virtual environment.
+The repository contains the Python source, tests, wrapper script, setup README, architecture document, runtime instructions, dependency lockfile, secret scanner, evidence collector, and failure-recovery evidence. It intentionally excludes the Canvas credential, OAuth credentials, runtime database, logs, drafts, caches, and virtual environment.
 
 1. AGENT DISCUSSION FORUM ACTIVITY
 
@@ -49,7 +49,7 @@ The generated redacted audit extract in evidence/scheduled_runs.md maps runs to 
 
 2. CODE AND SETUP
 
-No public repository URL is required because the source is supplied as canvas-agent-source.zip.
+Public repository: https://github.com/amangang3/hw3-autonomous-canvas-agent
 
 Requirements:
 
@@ -61,7 +61,7 @@ Requirements:
 
 Project setup:
 
-1. Extract the archive as ~/hw3-agent.
+1. Clone the repository into ~/hw3-agent.
 2. Run: cd ~/hw3-agent
 3. Run: uv sync --extra test
 4. Run: chmod 755 bin/canvas_tool scripts/collect_evidence.sh scripts/*.py
@@ -171,4 +171,4 @@ Detailed failure evidence is included in evidence/failure_recovery.md.
 
 - Entry 230726 was a setup-validation post and is not represented as autonomous scheduled participation.
 - Entry 230748 came from a user-requested immediate run and is not counted among the 24 unattended scheduled contributions.
-- The source archive contains no Canvas token, model OAuth token, runtime database, logs, drafts, virtual environment, or cache files.
+- The repository contains no Canvas token, model OAuth token, runtime database, logs, drafts, virtual environment, or cache files.

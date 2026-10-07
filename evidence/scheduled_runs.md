@@ -1,0 +1,135 @@
+# Scheduled-run evidence
+
+Generated from local redacted logs and state.
+
+## Recent runs
+
+- 2026-10-07T05:01:13.378246+00:00 run=fd70eb1cbedbf3fcf5793681 command=end result=ok
+- 2026-10-07T05:30:12.946101+00:00 run=9dff004225fca54e5c705d87 command=begin result=COURSE-TEAM CONTROL: RUNNING
+- 2026-10-07T05:30:16.647289+00:00 run=9dff004225fca54e5c705d87 command=new result=ok
+- 2026-10-07T05:30:20.996580+00:00 run=9dff004225fca54e5c705d87 command=thread result=ok
+- 2026-10-07T05:31:04.409911+00:00 run=9dff004225fca54e5c705d87 command=post result=ok
+- 2026-10-07T05:31:07.741525+00:00 run=9dff004225fca54e5c705d87 command=end result=ok
+- 2026-10-07T06:00:20.221304+00:00 run=bb524a7c90f74807b7940979 command=begin result=COURSE-TEAM CONTROL: RUNNING
+- 2026-10-07T06:00:30.874452+00:00 run=bb524a7c90f74807b7940979 command=new result=ok
+- 2026-10-07T06:00:43.151581+00:00 run=bb524a7c90f74807b7940979 command=thread result=ok
+- 2026-10-07T06:01:43.048028+00:00 run=bb524a7c90f74807b7940979 command=post result=ok
+- 2026-10-07T06:01:55.314702+00:00 run=bb524a7c90f74807b7940979 command=end result=ok
+- 2026-10-07T06:30:13.693832+00:00 run=eb409f713709395aa8c985ab command=begin result=COURSE-TEAM CONTROL: RUNNING
+- 2026-10-07T06:30:17.356121+00:00 run=eb409f713709395aa8c985ab command=new result=ok
+- 2026-10-07T06:30:22.694359+00:00 run=eb409f713709395aa8c985ab command=thread result=ok
+- 2026-10-07T06:30:39.379118+00:00 run=eb409f713709395aa8c985ab command=post result=content:disclosure
+- 2026-10-07T06:30:42.907410+00:00 run=eb409f713709395aa8c985ab command=skip result=ok
+- 2026-10-07T06:30:45.172757+00:00 run=eb409f713709395aa8c985ab command=end result=ok
+- 2026-10-07T07:00:29.082756+00:00 run=0601ad1f5ff51d610661589b command=begin result=COURSE-TEAM CONTROL: RUNNING
+- 2026-10-07T07:00:41.456740+00:00 run=0601ad1f5ff51d610661589b command=new result=ok
+- 2026-10-07T07:00:57.629095+00:00 run=0601ad1f5ff51d610661589b command=thread result=ok
+- 2026-10-07T07:02:09.820016+00:00 run=0601ad1f5ff51d610661589b command=post result=ok
+- 2026-10-07T07:02:21.348326+00:00 run=0601ad1f5ff51d610661589b command=end result=ok
+- 2026-10-07T07:30:13.536169+00:00 run=b0c0d37094ac675c0304f8dc command=begin result=COURSE-TEAM CONTROL: RUNNING
+- 2026-10-07T07:30:16.485136+00:00 run=b0c0d37094ac675c0304f8dc command=new result=ok
+- 2026-10-07T07:30:20.573728+00:00 run=b0c0d37094ac675c0304f8dc command=thread result=ok
+- 2026-10-07T07:31:07.440024+00:00 run=b0c0d37094ac675c0304f8dc command=post result=ok
+- 2026-10-07T07:31:11.389559+00:00 run=b0c0d37094ac675c0304f8dc command=end result=ok
+- 2026-10-07T08:00:14.172729+00:00 run=b440d57bce3addb4f12d2f93 command=begin result=COURSE-TEAM CONTROL: RUNNING
+- 2026-10-07T08:00:18.757603+00:00 run=b440d57bce3addb4f12d2f93 command=new result=ok
+- 2026-10-07T08:00:24.901818+00:00 run=b440d57bce3addb4f12d2f93 command=thread result=ok
+- 2026-10-07T08:01:06.151400+00:00 run=b440d57bce3addb4f12d2f93 command=post result=ok
+- 2026-10-07T08:01:09.566385+00:00 run=b440d57bce3addb4f12d2f93 command=end result=ok
+- 2026-10-07T08:30:12.553685+00:00 run=39212add7de505d75f113bb4 command=begin result=COURSE-TEAM CONTROL: RUNNING
+- 2026-10-07T08:30:16.013340+00:00 run=39212add7de505d75f113bb4 command=new result=ok
+- 2026-10-07T08:30:19.805193+00:00 run=39212add7de505d75f113bb4 command=thread result=ok
+- 2026-10-07T08:30:55.434162+00:00 run=39212add7de505d75f113bb4 command=post result=content:disclosure
+- 2026-10-07T08:31:01.175941+00:00 run=39212add7de505d75f113bb4 command=skip result=ok
+- 2026-10-07T08:31:05.116000+00:00 run=39212add7de505d75f113bb4 command=end result=ok
+- 2026-10-07T09:00:19.638351+00:00 run=1f0a03a1699baaff7b2b6467 command=begin result=COURSE-TEAM CONTROL: RUNNING
+- 2026-10-07T09:00:24.645187+00:00 run=1f0a03a1699baaff7b2b6467 command=new result=ok
+- 2026-10-07T09:00:31.078129+00:00 run=1f0a03a1699baaff7b2b6467 command=thread result=ok
+- 2026-10-07T09:01:22.557904+00:00 run=1f0a03a1699baaff7b2b6467 command=post result=ok
+- 2026-10-07T09:01:27.931544+00:00 run=1f0a03a1699baaff7b2b6467 command=end result=ok
+- 2026-10-07T09:30:12.473200+00:00 run=ef10b20cf1f5656011ffcaa4 command=begin result=COURSE-TEAM CONTROL: RUNNING
+- 2026-10-07T09:30:18.205853+00:00 run=ef10b20cf1f5656011ffcaa4 command=new result=ok
+- 2026-10-07T09:30:21.781346+00:00 run=ef10b20cf1f5656011ffcaa4 command=thread result=ok
+- 2026-10-07T09:31:04.192844+00:00 run=ef10b20cf1f5656011ffcaa4 command=post result=ok
+- 2026-10-07T09:31:10.670598+00:00 run=ef10b20cf1f5656011ffcaa4 command=end result=ok
+- 2026-10-07T10:00:12.509218+00:00 run=2d66b8cd5bd890b3a4d6cbb8 command=begin result=COURSE-TEAM CONTROL: RUNNING
+- 2026-10-07T10:00:16.175112+00:00 run=2d66b8cd5bd890b3a4d6cbb8 command=new result=ok
+- 2026-10-07T10:00:22.724607+00:00 run=2d66b8cd5bd890b3a4d6cbb8 command=thread result=ok
+- 2026-10-07T10:01:22.427495+00:00 run=2d66b8cd5bd890b3a4d6cbb8 command=post result=ok
+- 2026-10-07T10:01:25.965481+00:00 run=2d66b8cd5bd890b3a4d6cbb8 command=end result=ok
+- 2026-10-07T10:30:18.778935+00:00 run=dcc8c2609029d7e23aacfa35 command=begin result=COURSE-TEAM CONTROL: RUNNING
+- 2026-10-07T10:30:22.659897+00:00 run=dcc8c2609029d7e23aacfa35 command=new result=ok
+- 2026-10-07T10:30:26.232183+00:00 run=dcc8c2609029d7e23aacfa35 command=thread result=ok
+- 2026-10-07T10:31:05.137591+00:00 run=dcc8c2609029d7e23aacfa35 command=post result=ok
+- 2026-10-07T10:31:08.934587+00:00 run=dcc8c2609029d7e23aacfa35 command=end result=ok
+- 2026-10-07T11:00:14.554808+00:00 run=a38bf730015c68c4e5bff049 command=begin result=COURSE-TEAM CONTROL: RUNNING
+- 2026-10-07T11:00:18.475444+00:00 run=a38bf730015c68c4e5bff049 command=new result=ok
+- 2026-10-07T11:00:24.776828+00:00 run=a38bf730015c68c4e5bff049 command=thread result=ok
+- 2026-10-07T11:00:31.063425+00:00 run=a38bf730015c68c4e5bff049 command=thread result=ok
+- 2026-10-07T11:01:14.786040+00:00 run=a38bf730015c68c4e5bff049 command=post result=ok
+- 2026-10-07T11:01:18.598781+00:00 run=a38bf730015c68c4e5bff049 command=end result=ok
+- 2026-10-07T11:30:21.376916+00:00 run=ba3f500916a6d97e4302f662 command=begin result=COURSE-TEAM CONTROL: RUNNING
+- 2026-10-07T11:30:24.548785+00:00 run=ba3f500916a6d97e4302f662 command=new result=ok
+- 2026-10-07T11:30:28.999655+00:00 run=ba3f500916a6d97e4302f662 command=thread result=ok
+- 2026-10-07T11:31:23.511954+00:00 run=ba3f500916a6d97e4302f662 command=post result=verification_failed
+- 2026-10-07T11:31:29.556955+00:00 run=ba3f500916a6d97e4302f662 command=thread result=ok
+- 2026-10-07T11:31:35.262048+00:00 run=ba3f500916a6d97e4302f662 command=end result=ok
+- 2026-10-07T12:00:15.557823+00:00 run=989820692c03ed5f5ef824ca command=begin result=COURSE-TEAM CONTROL: RUNNING
+- 2026-10-07T12:00:19.736849+00:00 run=989820692c03ed5f5ef824ca command=new result=ok
+- 2026-10-07T12:00:26.508737+00:00 run=989820692c03ed5f5ef824ca command=thread result=ok
+- 2026-10-07T12:01:27.459842+00:00 run=989820692c03ed5f5ef824ca command=post result=ok
+- 2026-10-07T12:01:39.680717+00:00 run=989820692c03ed5f5ef824ca command=end result=ok
+- 2026-10-07T12:30:14.352047+00:00 run=16e429de93508d80ae2fb6f7 command=begin result=COURSE-TEAM CONTROL: RUNNING
+- 2026-10-07T12:30:19.302330+00:00 run=16e429de93508d80ae2fb6f7 command=new result=ok
+- 2026-10-07T12:30:24.880186+00:00 run=16e429de93508d80ae2fb6f7 command=thread result=ok
+- 2026-10-07T12:31:15.063749+00:00 run=16e429de93508d80ae2fb6f7 command=post result=ok
+- 2026-10-07T12:31:18.664041+00:00 run=16e429de93508d80ae2fb6f7 command=end result=ok
+- 2026-10-07T13:00:25.942852+00:00 run=1091d4161b277e000555e8df command=begin result=COURSE-TEAM CONTROL: RUNNING
+- 2026-10-07T13:00:46.622064+00:00 run=1091d4161b277e000555e8df command=new result=ok
+- 2026-10-07T13:01:04.568356+00:00 run=1091d4161b277e000555e8df command=thread result=ok
+- 2026-10-07T13:02:50.929853+00:00 run=1091d4161b277e000555e8df command=post result=verification_failed
+- 2026-10-07T13:03:05.099513+00:00 run=1091d4161b277e000555e8df command=skip result=ok
+- 2026-10-07T13:03:37.724384+00:00 run=1091d4161b277e000555e8df command=end result=ok
+- 2026-10-07T13:16:57.690241+00:00 run=086b9752c67058936192c35e command=begin result=COURSE-TEAM CONTROL: RUNNING
+- 2026-10-07T13:17:11.876079+00:00 run=086b9752c67058936192c35e command=thread result=ok
+- 2026-10-07T13:17:11.931397+00:00 run=086b9752c67058936192c35e command=skip result=ok
+- 2026-10-07T13:17:11.982040+00:00 run=086b9752c67058936192c35e command=end result=ok
+- 2026-10-07T13:30:11.914675+00:00 run=ed74f3bd0840b44e59993c39 command=begin result=COURSE-TEAM CONTROL: RUNNING
+- 2026-10-07T13:30:15.189480+00:00 run=ed74f3bd0840b44e59993c39 command=new result=ok
+- 2026-10-07T13:30:20.952103+00:00 run=ed74f3bd0840b44e59993c39 command=thread result=ok
+- 2026-10-07T13:30:59.448589+00:00 run=ed74f3bd0840b44e59993c39 command=post result=ok
+- 2026-10-07T13:31:03.663963+00:00 run=ed74f3bd0840b44e59993c39 command=end result=ok
+- 2026-10-07T14:00:13.698483+00:00 run=ebefb881cf12a46a79385aaa command=begin result=COURSE-TEAM CONTROL: RUNNING
+- 2026-10-07T14:00:18.327539+00:00 run=ebefb881cf12a46a79385aaa command=new result=ok
+- 2026-10-07T14:00:23.354334+00:00 run=ebefb881cf12a46a79385aaa command=thread result=ok
+- 2026-10-07T14:01:14.509641+00:00 run=ebefb881cf12a46a79385aaa command=post result=ok
+- 2026-10-07T14:01:21.484518+00:00 run=ebefb881cf12a46a79385aaa command=end result=ok
+
+## Verified thread URLs
+
+- https://canvas.mit.edu/courses/40577/discussion_topics/448963#entry-230726
+- https://canvas.mit.edu/courses/40577/discussion_topics/448963#entry-230741
+- https://canvas.mit.edu/courses/40577/discussion_topics/448963#entry-230748
+- https://canvas.mit.edu/courses/40577/discussion_topics/448963#entry-230754
+- https://canvas.mit.edu/courses/40577/discussion_topics/448963#entry-230776
+- https://canvas.mit.edu/courses/40577/discussion_topics/448963#entry-230796
+- https://canvas.mit.edu/courses/40577/discussion_topics/448963#entry-230815
+- https://canvas.mit.edu/courses/40577/discussion_topics/448963#entry-230836
+- https://canvas.mit.edu/courses/40577/discussion_topics/448963#entry-230856
+- https://canvas.mit.edu/courses/40577/discussion_topics/448963#entry-230872
+- https://canvas.mit.edu/courses/40577/discussion_topics/448963#entry-230879
+- https://canvas.mit.edu/courses/40577/discussion_topics/448963#entry-230894
+- https://canvas.mit.edu/courses/40577/discussion_topics/448963#entry-230916
+- https://canvas.mit.edu/courses/40577/discussion_topics/448963#entry-230924
+- https://canvas.mit.edu/courses/40577/discussion_topics/448963#entry-230931
+- https://canvas.mit.edu/courses/40577/discussion_topics/448963#entry-230944
+- https://canvas.mit.edu/courses/40577/discussion_topics/448963#entry-230950
+- https://canvas.mit.edu/courses/40577/discussion_topics/448963#entry-230957
+- https://canvas.mit.edu/courses/40577/discussion_topics/448963#entry-230963
+- https://canvas.mit.edu/courses/40577/discussion_topics/448963#entry-230970
+- https://canvas.mit.edu/courses/40577/discussion_topics/448963#entry-230975
+- https://canvas.mit.edu/courses/40577/discussion_topics/448963#entry-230990
+- https://canvas.mit.edu/courses/40577/discussion_topics/448963#entry-230999
+- https://canvas.mit.edu/courses/40577/discussion_topics/448963#entry-231014
+- https://canvas.mit.edu/courses/40577/discussion_topics/448963#entry-231028
+- https://canvas.mit.edu/courses/40577/discussion_topics/448963#entry-231037

@@ -1,0 +1,5 @@
+#!/bin/sh
+set -eu
+ROOT=$(CDPATH= cd -- "$(dirname -- "$0")/.." && pwd)
+export CANVAS_TOOL_HOME="${CANVAS_TOOL_HOME:-$ROOT}"
+exec "$ROOT/.venv/bin/python" -m canvas_tool "$@"
