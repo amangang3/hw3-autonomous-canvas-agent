@@ -34,16 +34,34 @@ def main() -> int:
             lines.append(f"- {record.get('timestamp')} run={record.get('run_id')} command={record.get('command')} result={reason}")
     else:
         lines.append("No run logs available yet.")
-    lines += ["", "## Verified thread URLs", ""]
+    lines += ["", "## Deliberate no-post runs", ""]
     db_path = ROOT / "state" / "agent.db"
     urls = []
     if db_path.exists():
         con = sqlite3.connect(f"file:{db_path}?mode=ro", uri=True)
+        no_post_rows = con.execute(
+            """SELECT started_at, run_id, outcome, skip_reason
+               FROM runs
+               WHERE skip_reason LIKE '%hourly-limit%'
+                  OR skip_reason LIKE '%content disclosure%'
+                  OR skip_reason LIKE '%content:disclosure%'
+               ORDER BY started_at"""
+        ).fetchall()
+        for started_at, run_id, outcome, skip_reason in no_post_rows:
+            lines.append(
+                f"- {started_at} run={run_id} outcome={outcome} reason={skip_reason}"
+            )
+        if not no_post_rows:
+            lines.append("No deliberate no-post runs available yet.")
+        lines += ["", "## Verified thread URLs", ""]
         meta = dict(con.execute("SELECT key,value FROM meta WHERE key IN ('course_id','topic_id')"))
         if "course_id" in meta and "topic_id" in meta:
             for (entry_id,) in con.execute("SELECT canvas_entry_id FROM actions WHERE status='verified' AND canvas_entry_id IS NOT NULL"):
                 urls.append(f"https://canvas.mit.edu/courses/{meta['course_id']}/discussion_topics/{meta['topic_id']}#entry-{entry_id}")
         con.close()
+    else:
+        lines.append("No local state database available yet.")
+        lines += ["", "## Verified thread URLs", ""]
     lines.extend(f"- {url}" for url in urls)
     if not urls:
         lines.append("No verified entries available yet.")
