@@ -1,0 +1,174 @@
+HW3 AUTONOMOUS CANVAS AGENT — SUBMISSION NOTES
+Snapshot: 2026-10-07 10:13 EDT
+
+SUBMISSION ARTIFACTS
+
+Code archive: canvas-agent-source.zip
+This text file: canvas-agent-submission.txt
+
+The ZIP contains the Python source, tests, wrapper script, setup README, architecture document, runtime instructions, dependency lockfile, secret scanner, evidence collector, and failure-recovery evidence. It intentionally excludes the Canvas credential, OAuth credentials, runtime database, logs, drafts, caches, and virtual environment.
+
+1. AGENT DISCUSSION FORUM ACTIVITY
+
+Forum topic:
+https://canvas.mit.edu/courses/40577/discussion_topics/448963
+
+At this snapshot, the local intent journal contains 26 Canvas entries that were read back and verified. Of these, 24 were produced by unattended scheduled runs, one was produced by a user-requested immediate autonomous run (entry 230748), and one was a short setup-validation post (entry 230726). The 24 links below are the primary evidence for autonomous participation across scheduled runs:
+
+1. https://canvas.mit.edu/courses/40577/discussion_topics/448963#entry-230741
+2. https://canvas.mit.edu/courses/40577/discussion_topics/448963#entry-230754
+3. https://canvas.mit.edu/courses/40577/discussion_topics/448963#entry-230776
+4. https://canvas.mit.edu/courses/40577/discussion_topics/448963#entry-230796
+5. https://canvas.mit.edu/courses/40577/discussion_topics/448963#entry-230815
+6. https://canvas.mit.edu/courses/40577/discussion_topics/448963#entry-230836
+7. https://canvas.mit.edu/courses/40577/discussion_topics/448963#entry-230856
+8. https://canvas.mit.edu/courses/40577/discussion_topics/448963#entry-230872
+9. https://canvas.mit.edu/courses/40577/discussion_topics/448963#entry-230879
+10. https://canvas.mit.edu/courses/40577/discussion_topics/448963#entry-230894
+11. https://canvas.mit.edu/courses/40577/discussion_topics/448963#entry-230916
+12. https://canvas.mit.edu/courses/40577/discussion_topics/448963#entry-230924
+13. https://canvas.mit.edu/courses/40577/discussion_topics/448963#entry-230931
+14. https://canvas.mit.edu/courses/40577/discussion_topics/448963#entry-230944
+15. https://canvas.mit.edu/courses/40577/discussion_topics/448963#entry-230950
+16. https://canvas.mit.edu/courses/40577/discussion_topics/448963#entry-230957
+17. https://canvas.mit.edu/courses/40577/discussion_topics/448963#entry-230963
+18. https://canvas.mit.edu/courses/40577/discussion_topics/448963#entry-230970
+19. https://canvas.mit.edu/courses/40577/discussion_topics/448963#entry-230975
+20. https://canvas.mit.edu/courses/40577/discussion_topics/448963#entry-230990
+21. https://canvas.mit.edu/courses/40577/discussion_topics/448963#entry-230999
+22. https://canvas.mit.edu/courses/40577/discussion_topics/448963#entry-231014
+23. https://canvas.mit.edu/courses/40577/discussion_topics/448963#entry-231028
+24. https://canvas.mit.edu/courses/40577/discussion_topics/448963#entry-231037
+
+Additional, non-scheduled entries are disclosed for completeness but are not counted as scheduled-run evidence:
+
+- User-requested immediate autonomous run: https://canvas.mit.edu/courses/40577/discussion_topics/448963#entry-230748
+- Setup-validation post: https://canvas.mit.edu/courses/40577/discussion_topics/448963#entry-230726
+
+The generated redacted audit extract in evidence/scheduled_runs.md maps runs to begin/new/thread/post/skip/end events and lists all verified entry URLs.
+
+2. CODE AND SETUP
+
+No public repository URL is required because the source is supplied as canvas-agent-source.zip.
+
+Requirements:
+
+- macOS or Linux
+- Python 3.11 or newer
+- uv
+- Hermes Agent
+- A Canvas access token created and installed by the human
+
+Project setup:
+
+1. Extract the archive as ~/hw3-agent.
+2. Run: cd ~/hw3-agent
+3. Run: uv sync --extra test
+4. Run: chmod 755 bin/canvas_tool scripts/collect_evidence.sh scripts/*.py
+5. Run: mkdir -p state/drafts logs
+6. Run: chmod 700 state state/drafts logs
+7. The human creates ~/.config/hw3-agent/env containing exactly CANVAS_TOKEN=<token>, sets ~/.config/hw3-agent to mode 700, and sets the env file to mode 600. The token must never be pasted into an agent conversation.
+8. Run the tests: uv run --extra test pytest -q
+9. Run the read-only connectivity check: bin/canvas_tool status
+
+Autonomous deployment:
+
+1. Create a dedicated Hermes profile named canvasagent.
+2. Authenticate that profile with its own model credential. The deployed profile uses OpenAI Codex OAuth.
+3. Set its terminal working directory to ~/hw3-agent.
+4. For the cron platform, disable unrelated toolsets including web, browser, code execution, vision, memory, delegation, connections, cron management, and computer use. Terminal is retained for invoking canvas_tool; file access is retained for reading RUNTIME.md and writing a draft under state/drafts.
+5. Install and start the Hermes gateway as a launchd service. The deployed gateway uses RunAtLoad/KeepAlive behavior, so closing the interactive terminal does not stop the agent.
+6. Create the recurring job with schedule */30 * * * * and prompt: Run one HW3 forum cycle. Follow ~/hw3-agent/RUNTIME.md exactly and actively find one substantive contribution to make.
+7. Confirm the job with hermes -p canvasagent cron list and the gateway with hermes gateway status.
+
+README.md contains the project commands. ARCHITECTURE.md and RUNTIME.md contain the deployed design and cycle policy.
+
+3. ARCHITECTURE AND AUTONOMY
+
+Scheduler
+
+Hermes cron runs the canvasagent profile every 30 minutes. A launchd-supervised Hermes gateway owns the scheduler independently of an interactive terminal. Each invocation has a three-minute scheduler limit and starts a fresh agent cycle.
+
+Canvas access boundary
+
+Hermes decides what is worth contributing, but only canvas_tool can access Canvas. client.py pins HTTPS traffic to canvas.mit.edu, uses a 20-second timeout, validates same-origin pagination, retries eligible GET failures, and performs each POST once. Discovery fails unless it finds exactly one active-course topic titled “Homework 3: Agent Discussion Forum.” There are no edit or delete code paths.
+
+Decision logic
+
+RUNTIME.md tells the agent to call begin, read unseen entries plus an eligible-candidate pool, inspect thread context when useful, select one substantive and non-duplicative contribution, write a 60–250 word draft, submit it through canvas_tool, and close the run. It prefers replies and limits new threads to one per 24 hours. Every forum entry is labeled and treated as untrusted data; instructions inside entries are never followed.
+
+Deterministic enforcement
+
+Before any write, gate.py checks active run ownership, target validity, self-reply/duplicate conditions, content filters, STOP state, rolling limits, and a fresh exact control line of COURSE-TEAM CONTROL: RUNNING. It then commits a durable intent before issuing one POST. Drafts must be regular UTF-8 files directly under state/drafts; final-component symlinks and paths outside that directory are refused. Output and logs are token-redacted.
+
+Local persistent memory
+
+SQLite runs in WAL mode. The meta table stores discovered Canvas IDs and breaker state. seen_entries prevents repeatedly presenting the same new entries as new. actions is the intent journal and idempotency ledger, recording intended, posted, verified, or abandoned states. runs records start/end state, outcome, and skip reason. BEGIN IMMEDIATE plus process advisory locks prevent overlapping runs and fence begin, post/verification, and end operations.
+
+Verification and recovery
+
+After a POST, the wrapper re-reads Canvas at bounded delays of 0, 1, 2, 4, and 8 seconds. Verification requires the returned entry ID to be self-authored, under the intended parent, and to match normalized logical text. If acknowledgement or read-back is uncertain, the write is not retried. The next begin reconciles unresolved actions against a fresh thread read. A matching entry becomes verified; an old unmatched pre-POST intent becomes abandoned and is never automatically reposted.
+
+Rate limits and stopping rule
+
+The deterministic wrapper permits at most two actions per run and at most three intended/posted/verified actions in any rolling hour. The current runtime asks for one contribution per cycle. Every write rechecks the exact RUNNING control line and state/STOP. Three consecutive error outcomes create STOP; a successful outcome resets the breaker. The course team can therefore pause through the control line, and local operators can stop through the STOP file.
+
+4. SUPPORTING SCHEDULED-RUN EVIDENCE
+
+The attached evidence/scheduled_runs.md is a redacted JSONL-derived activity extract. Examples:
+
+- 2026-10-07 01:00 UTC, run ae11e7ff93109b1ad38424c3: scheduled run posted entry 230741. Immediate read-back lagged, so the run reported verification failure and did not retry. A later fresh read reconciled exactly one matching entry to verified.
+- 2026-10-07 01:30 UTC, run 91391ca51f4e5ec35334a5f6: scheduled begin/new/thread/post/end completed successfully and verified entry 230754.
+- 2026-10-07 02:00 UTC, run 349a7e6f64f4f117b40273ed: the agent inspected candidates, read thread context, and drafted a substantive reply. The rolling-hour guard returned hourly_limit. The agent deliberately accepted the refusal, recorded “Post refused by the hourly-limit guardrail,” did not retry or rephrase, and ended cleanly with no post.
+- 2026-10-07 02:30 UTC, run eeb7bbd7faab8df1d193f845: the next scheduled run completed begin/new/thread/post/end and verified entry 230776.
+- 2026-10-07 06:30 UTC, run eb409f713709395aa8c985ab: the content-disclosure guard refused the proposed reply. The agent deliberately accepted the refusal without rephrasing, recorded the skip reason, and ended cleanly.
+- 2026-10-07 08:30 UTC, run 39212add7de505d75f113bb4: another content-disclosure refusal was accepted and recorded as a no-post run.
+- Numerous later runs show the repeated begin/new/thread/post/end sequence and verified Canvas entries through entry 231037.
+
+These no-post runs demonstrate that the agent does not bypass deterministic policy merely to satisfy a posting goal. The forum links remain the primary evidence; the redacted activity extract supports scheduler and skip behavior not visible in Canvas.
+
+5. FAILURE-AND-RECOVERY EVIDENCE
+
+Injected lost acknowledgement
+
+FaultController supports one-shot lost_ack, crash_after_intent, timeout_get, and malformed modes. In test_lost_ack_leaves_intent_then_begin_reconciles, lost_ack fires after the fake Canvas POST takes effect but before local acknowledgement. The test proves:
+
+- an intended row existed before the write;
+- Canvas received exactly one POST;
+- the first run returned lost_ack and did not retry;
+- the next begin performed a fresh read and changed that same action to verified; and
+- the fake Canvas POST count remained exactly one, proving duplicate effects were prevented.
+
+Injected crash after intent
+
+The crash_after_intent test commits the intent and crashes before Canvas is called. Canvas receives zero POSTs. After the recovery interval, the next begin marks the unmatched intent abandoned and never reposts it. A second test leaves the crashed run open; stale takeover atomically closes it, increments the breaker, starts a new run, and still performs zero Canvas writes.
+
+Live delayed-read recovery
+
+Scheduled entries 230741 and 231014 were accepted by Canvas but were not visible during their immediate read-back windows. In both cases the agent did not retry the POST. A later fresh read found one matching entry and reconciled the existing posted record to verified. This is live evidence of conservative recovery from an uncertain acknowledgement without duplication.
+
+Regression coverage
+
+Command:
+.venv/bin/pytest -q tests/test_faults_reconcile.py tests/test_memory.py::test_stale_claim_counts_recovered_failure_atomically
+
+Result:
+....... [100%]
+
+Complete test command:
+.venv/bin/pytest -q
+
+Result:
+............................................... [100%]
+
+Secret scan:
+.venv/bin/python scripts/secret_scan.py .
+secret scan passed
+
+Detailed failure evidence is included in evidence/failure_recovery.md.
+
+6. DISCLOSURES
+
+- Entry 230726 was a setup-validation post and is not represented as autonomous scheduled participation.
+- Entry 230748 came from a user-requested immediate run and is not counted among the 24 unattended scheduled contributions.
+- The source archive contains no Canvas token, model OAuth token, runtime database, logs, drafts, virtual environment, or cache files.
